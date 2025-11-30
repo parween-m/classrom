@@ -18,6 +18,8 @@
             --light-blue: #2c3e50;
             --gray: #7f8c8d;
             --light: #ecf0f1;
+            --text-color: #ffffff; /* White text color */
+            --title-color: #5d4a36; /* Dark brown for titles */
         }
         
         * {
@@ -30,7 +32,7 @@
             background: linear-gradient(135deg, var(--black) 0%, var(--dark-blue) 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
-            color: var(--light);
+            color: var(--text-color); /* White text */
             line-height: 1.6;
         }
         
@@ -59,7 +61,7 @@
         .navbar-brand {
             font-weight: 700;
             font-size: 1.8rem;
-            color: var(--light) !important;
+            color: var(--text-color) !important; /* White text */
         }
         
         .navbar-brand span {
@@ -72,7 +74,7 @@
             border-radius: 6px;
             margin: 0 4px;
             transition: all 0.3s ease;
-            color: var(--light) !important;
+            color: var(--text-color) !important; /* White text */
         }
         
         .nav-link:hover, .nav-link.active {
@@ -139,7 +141,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light);
+            color: var(--text-color); /* White text */
             font-weight: bold;
             font-size: 1.2rem;
             background: var(--brown);
@@ -172,7 +174,7 @@
             border-bottom: 1px solid var(--brown);
             padding: 20px 25px;
             font-weight: 600;
-            color: var(--light);
+            color: var(--title-color) !important; /* Dark brown for titles */
         }
         
         .stats-card {
@@ -225,7 +227,7 @@
             padding: 6px 12px;
             border-radius: 20px;
             background: rgba(139, 115, 85, 0.2);
-            color: var(--light-brown);
+            color: var(--text-color); /* White text */
         }
         
         /* File Sharing */
@@ -255,7 +257,7 @@
             background: var(--dark-blue);
             border-radius: 12px;
             padding: 25px;
-            color: var(--light);
+            color: var(--text-color); /* White text */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--light-blue);
         }
@@ -308,7 +310,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--light);
+            color: var(--text-color); /* White text */
             font-weight: bold;
             font-size: 1.1rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -332,7 +334,7 @@
             top: -8px;
             right: -8px;
             background: var(--brown);
-            color: white;
+            color: var(--text-color); /* White text */
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -347,14 +349,14 @@
         /* Footer */
         footer {
             background: var(--dark-blue);
-            color: var(--light);
+            color: var(--text-color); /* White text */
             margin-top: 60px;
             padding: 50px 0 25px;
             border-top: 2px solid var(--brown);
         }
         
         .footer-heading {
-            color: var(--brown);
+            color: var(--title-color) !important; /* Dark brown for titles */
             font-weight: 700;
             margin-bottom: 20px;
             position: relative;
@@ -368,7 +370,7 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background: var(--brown);
+            background: var(--title-color); /* Dark brown for titles */
             border-radius: 3px;
         }
         
@@ -380,14 +382,14 @@
             padding: 10px 25px;
             font-weight: 600;
             transition: all 0.3s ease;
-            color: var(--light);
+            color: var(--text-color); /* White text */
         }
         
         .btn-primary:hover {
             background: var(--dark-brown);
             transform: translateY(-3px);
             box-shadow: 0 7px 15px rgba(139, 115, 85, 0.4);
-            color: var(--light);
+            color: var(--text-color); /* White text */
         }
         
         .btn-success {
@@ -397,14 +399,14 @@
             padding: 10px 25px;
             font-weight: 600;
             transition: all 0.3s ease;
-            color: var(--light);
+            color: var(--text-color); /* White text */
         }
         
         .btn-success:hover {
             background: var(--dark-blue);
             transform: translateY(-3px);
             box-shadow: 0 7px 15px rgba(44, 62, 80, 0.4);
-            color: var(--light);
+            color: var(--text-color); /* White text */
         }
         
         .btn-outline-primary {
@@ -419,7 +421,7 @@
         
         .btn-outline-primary:hover {
             background: var(--brown);
-            color: var(--light);
+            color: var(--text-color); /* White text */
             transform: translateY(-3px);
         }
         
@@ -489,22 +491,23 @@
             border-radius: 8px;
             font-weight: 500;
             background: var(--light-blue);
+            color: var(--text-color); /* White text */
         }
         
         .calendar-day.header {
             font-weight: 600;
-            color: var(--brown);
+            color: var(--title-color) !important; /* Dark brown for titles */
             background: rgba(139, 115, 85, 0.2);
         }
         
         .calendar-day.active {
             background: var(--brown);
-            color: var(--light);
+            color: var(--text-color); /* White text */
         }
         
         .calendar-day.event {
             background: rgba(139, 115, 85, 0.3);
-            color: var(--light-brown);
+            color: var(--text-color); /* White text */
             position: relative;
         }
         
@@ -554,7 +557,7 @@
         
         .todo-check.checked {
             background: var(--brown);
-            color: var(--light);
+            color: var(--text-color); /* White text */
         }
         
         /* Grade Distribution */
@@ -582,7 +585,7 @@
             align-items: center;
             justify-content: flex-end;
             padding-right: 15px;
-            color: var(--light);
+            color: var(--text-color); /* White text */
             font-weight: 600;
             min-width: 40px;
             background: var(--brown);
@@ -649,6 +652,38 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* Text color classes for all elements */
+        .text-light, .text-white, .text-muted, h1, h2, h3, h4, h5, h6, p, span, div, small, .card-title, .fw-bold, .fw-medium, .author-name, .post-content, .file-name, .event-name, .class-name, .class-teacher {
+            color: var(--text-color) !important; /* White text */
+        }
+        
+        /* Title styling */
+        h1, h2, h3, h4, h5, h6, .card-header, .sidebar-header h5, .calendar-header h5, .footer-heading {
+            color: var(--title-color) !important; /* Dark brown for titles */
+        }
+        
+        /* Specific overrides for elements that should keep their original colors */
+        .navbar-brand span, .event-date, .calendar-day.header, .text-brown, .text-light-brown, .text-dark-brown {
+            /* These elements should keep their original colors */
+        }
+        
+        .text-brown {
+            color: var(--brown) !important;
+        }
+        
+        .text-light-brown {
+            color: var(--light-brown) !important;
+        }
+        
+        .text-dark-brown {
+            color: var(--dark-brown) !important;
+        }
+        
+        /* Ensure all titles are dark brown */
+        .stats-card .card-title, .card-header h5, .sidebar-header h5, .calendar-header h5, .footer-heading {
+            color: var(--title-color) !important;
+        }
     </style>
 </head>
 <body>
@@ -687,7 +722,7 @@
                                 <span class="notification-badge">3</span>
                             </div>
                             <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--brown);">
-                                <span class="fw-bold text-white">JS</span>
+                                <span class="fw-bold">JS</span>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
@@ -710,57 +745,57 @@
                 <div class="col-lg-3 mb-4">
                     <div class="sidebar">
                         <div class="sidebar-header">
-                            <h5 class="text-light fw-bold"><i class="fas fa-layer-group me-2"></i>My Classes</h5>
+                            <h5 class="fw-bold"><i class="fas fa-layer-group me-2"></i>My Classes</h5>
                         </div>
                         <div class="class-list">
                             <div class="class-item d-flex align-items-center active">
                                 <div class="class-icon math me-3">M</div>
                                 <div>
-                                    <div class="fw-bold text-light">Mathematics 101</div>
+                                    <div class="fw-bold">Mathematics 101</div>
                                     <small class="text-muted">Prof. Johnson</small>
                                 </div>
                             </div>
                             <div class="class-item d-flex align-items-center">
                                 <div class="class-icon science me-3">S</div>
                                 <div>
-                                    <div class="fw-bold text-light">Science & Technology</div>
+                                    <div class="fw-bold">Science & Technology</div>
                                     <small class="text-muted">Dr. Williams</small>
                                 </div>
                             </div>
                             <div class="class-item d-flex align-items-center">
                                 <div class="class-icon english me-3">E</div>
                                 <div>
-                                    <div class="fw-bold text-light">English Literature</div>
+                                    <div class="fw-bold">English Literature</div>
                                     <small class="text-muted">Ms. Davis</small>
                                 </div>
                             </div>
                             <div class="class-item d-flex align-items-center">
                                 <div class="class-icon history me-3">H</div>
                                 <div>
-                                    <div class="fw-bold text-light">World History</div>
+                                    <div class="fw-bold">World History</div>
                                     <small class="text-muted">Mr. Thompson</small>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="sidebar-header mt-4">
-                            <h5 class="text-light fw-bold"><i class="fas fa-calendar-day me-2"></i>Upcoming Events</h5>
+                            <h5 class="fw-bold"><i class="fas fa-calendar-day me-2"></i>Upcoming Events</h5>
                         </div>
                         <div class="event-item">
                             <div class="event-date">Oct 15</div>
-                            <div class="event-name fw-medium text-light">Math Quiz - Chapter 5</div>
+                            <div class="event-name fw-medium">Math Quiz - Chapter 5</div>
                         </div>
                         <div class="event-item">
                             <div class="event-date">Oct 18</div>
-                            <div class="event-name fw-medium text-light">Science Project Submission</div>
+                            <div class="event-name fw-medium">Science Project Submission</div>
                         </div>
                         <div class="event-item">
                             <div class="event-date">Oct 22</div>
-                            <div class="event-name fw-medium text-light">History Essay Deadline</div>
+                            <div class="event-name fw-medium">History Essay Deadline</div>
                         </div>
                         
                         <div class="sidebar-header mt-4">
-                            <h5 class="text-light fw-bold"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                            <h5 class="fw-bold"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
                         </div>
                         <div class="quick-actions">
                             <button class="btn btn-primary"><i class="fas fa-plus me-1"></i> New Assignment</button>
@@ -773,7 +808,7 @@
                     <!-- Calendar Widget -->
                     <div class="calendar">
                         <div class="calendar-header">
-                            <h5 class="mb-0 text-light">October 2023</h5>
+                            <h5 class="mb-0">October 2023</h5>
                             <div>
                                 <button class="btn btn-sm btn-outline-primary"><i class="fas fa-chevron-left"></i></button>
                                 <button class="btn btn-sm btn-outline-primary"><i class="fas fa-chevron-right"></i></button>
@@ -828,7 +863,7 @@
                 <div class="col-lg-9">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <h2 class="text-light fw-bold">Mathematics 101 - Dashboard</h2>
+                            <h2 class="fw-bold">Mathematics 101 - Dashboard</h2>
                             <p class="text-muted">Welcome back, John! You have 3 pending assignments.</p>
                         </div>
                         <button class="btn btn-primary pulse"><i class="fas fa-plus me-1"></i> New Assignment</button>
@@ -840,8 +875,8 @@
                             <div class="stats-card assignments animate-fadeIn">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h5 class="card-title text-light"><i class="fas fa-tasks me-2"></i>Assignments</h5>
-                                        <h3 class="fw-bold text-light">3</h3>
+                                        <h5 class="card-title"><i class="fas fa-tasks me-2"></i>Assignments</h5>
+                                        <h3 class="fw-bold">3</h3>
                                         <p class="card-text text-muted">Pending</p>
                                     </div>
                                     <div class="text-brown display-6">
@@ -858,8 +893,8 @@
                             <div class="stats-card discussions animate-fadeIn">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h5 class="card-title text-light"><i class="fas fa-comments me-2"></i>Discussions</h5>
-                                        <h3 class="fw-bold text-light">5</h3>
+                                        <h5 class="card-title"><i class="fas fa-comments me-2"></i>Discussions</h5>
+                                        <h3 class="fw-bold">5</h3>
                                         <p class="card-text text-muted">Active</p>
                                     </div>
                                     <div class="text-light-blue display-6">
@@ -876,8 +911,8 @@
                             <div class="stats-card grades animate-fadeIn">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h5 class="card-title text-light"><i class="fas fa-chart-line me-2"></i>Grades</h5>
-                                        <h3 class="fw-bold text-light">87%</h3>
+                                        <h5 class="card-title"><i class="fas fa-chart-line me-2"></i>Grades</h5>
+                                        <h3 class="fw-bold">87%</h3>
                                         <p class="card-text text-muted">Average</p>
                                     </div>
                                     <div class="text-light-brown display-6">
@@ -896,8 +931,8 @@
                             <div class="stats-card events animate-fadeIn">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <h5 class="card-title text-light"><i class="fas fa-calendar me-2"></i>Upcoming</h5>
-                                        <h3 class="fw-bold text-light">2</h3>
+                                        <h5 class="card-title"><i class="fas fa-calendar me-2"></i>Upcoming</h5>
+                                        <h3 class="fw-bold">2</h3>
                                         <p class="card-text text-muted">Events</p>
                                     </div>
                                     <div class="text-dark-brown display-6">
@@ -917,14 +952,14 @@
                         <div class="col-lg-8">
                             <div class="card mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0 text-light fw-bold"><i class="fas fa-tasks me-2"></i>Recent Assignments</h5>
+                                    <h5 class="mb-0 fw-bold"><i class="fas fa-tasks me-2"></i>Recent Assignments</h5>
                                     <a href="#" class="btn btn-sm btn-outline-primary">View All <i class="fas fa-arrow-right ms-1"></i></a>
                                 </div>
                                 <div class="card-body">
                                     <div class="assignment-item">
                                         <div class="row align-items-center">
                                             <div class="col-md-6">
-                                                <h6 class="fw-bold text-light">Algebra Problem Set #5</h6>
+                                                <h6 class="fw-bold">Algebra Problem Set #5</h6>
                                                 <p class="text-muted mb-0"><i class="fas fa-book me-1"></i>Chapter 3: Quadratic Equations</p>
                                             </div>
                                             <div class="col-md-3">
@@ -939,7 +974,7 @@
                                     <div class="assignment-item">
                                         <div class="row align-items-center">
                                             <div class="col-md-6">
-                                                <h6 class="fw-bold text-light">Geometry Proofs</h6>
+                                                <h6 class="fw-bold">Geometry Proofs</h6>
                                                 <p class="text-muted mb-0"><i class="fas fa-shapes me-1"></i>Triangle congruence theorems</p>
                                             </div>
                                             <div class="col-md-3">
@@ -954,7 +989,7 @@
                                     <div class="assignment-item">
                                         <div class="row align-items-center">
                                             <div class="col-md-6">
-                                                <h6 class="fw-bold text-light">Calculus Limits</h6>
+                                                <h6 class="fw-bold">Calculus Limits</h6>
                                                 <p class="text-muted mb-0"><i class="fas fa-infinity me-1"></i>Understanding limits and continuity</p>
                                             </div>
                                             <div class="col-md-3">
@@ -974,7 +1009,7 @@
                                 <div class="col-md-6">
                                     <div class="card mb-4 h-100">
                                         <div class="card-header d-flex justify-content-between align-items-center">
-                                            <h5 class="mb-0 text-light fw-bold"><i class="fas fa-file me-2"></i>Shared Files</h5>
+                                            <h5 class="mb-0 fw-bold"><i class="fas fa-file me-2"></i>Shared Files</h5>
                                             <a href="#" class="btn btn-sm btn-outline-primary">Upload New</a>
                                         </div>
                                         <div class="card-body">
@@ -984,7 +1019,7 @@
                                                         <div class="file-icon">
                                                             <i class="fas fa-file-pdf"></i>
                                                         </div>
-                                                        <div class="file-name fw-bold text-light">Lecture_Notes.pdf</div>
+                                                        <div class="file-name fw-bold">Lecture_Notes.pdf</div>
                                                         <div class="file-size text-muted">2.4 MB</div>
                                                     </div>
                                                 </div>
@@ -993,7 +1028,7 @@
                                                         <div class="file-icon">
                                                             <i class="fas fa-file-word"></i>
                                                         </div>
-                                                        <div class="file-name fw-bold text-light">Assignment.docx</div>
+                                                        <div class="file-name fw-bold">Assignment.docx</div>
                                                         <div class="file-size text-muted">1.1 MB</div>
                                                     </div>
                                                 </div>
@@ -1002,7 +1037,7 @@
                                                         <div class="file-icon">
                                                             <i class="fas fa-file-image"></i>
                                                         </div>
-                                                        <div class="file-name fw-bold text-light">Diagram.png</div>
+                                                        <div class="file-name fw-bold">Diagram.png</div>
                                                         <div class="file-size text-muted">850 KB</div>
                                                     </div>
                                                 </div>
@@ -1011,7 +1046,7 @@
                                                         <div class="file-icon">
                                                             <i class="fas fa-file-excel"></i>
                                                         </div>
-                                                        <div class="file-name fw-bold text-light">Grades.xlsx</div>
+                                                        <div class="file-name fw-bold">Grades.xlsx</div>
                                                         <div class="file-size text-muted">520 KB</div>
                                                     </div>
                                                 </div>
@@ -1022,13 +1057,13 @@
                                 <div class="col-md-6">
                                     <div class="card mb-4 h-100">
                                         <div class="card-header">
-                                            <h5 class="mb-0 text-light fw-bold"><i class="fas fa-video me-2"></i>Class Meeting</h5>
+                                            <h5 class="mb-0 fw-bold"><i class="fas fa-video me-2"></i>Class Meeting</h5>
                                         </div>
                                         <div class="card-body p-0">
                                             <div class="video-container h-100">
                                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                                     <h5 class="mb-0">Mathematics 101 - Live Session</h5>
-                                                    <div class="text-light">
+                                                    <div>
                                                         <i class="fas fa-users me-1"></i> 24 participants
                                                     </div>
                                                 </div>
@@ -1036,7 +1071,7 @@
                                                     <div class="text-center">
                                                         <i class="fas fa-video fa-3x text-brown mb-3"></i>
                                                         <p class="mb-0">Meeting in progress</p>
-                                                        <small class="text-light">Click join to enter the meeting</small>
+                                                        <small>Click join to enter the meeting</small>
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-center mt-3 gap-2 flex-wrap">
@@ -1056,7 +1091,7 @@
                             <!-- To-do List -->
                             <div class="card mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0 text-light fw-bold"><i class="fas fa-list-check me-2"></i>To-Do List</h5>
+                                    <h5 class="mb-0 fw-bold"><i class="fas fa-list-check me-2"></i>To-Do List</h5>
                                     <a href="#" class="btn btn-sm btn-outline-primary">Add</a>
                                 </div>
                                 <div class="card-body">
@@ -1064,35 +1099,35 @@
                                         <div class="todo-item">
                                             <div class="todo-check checked"><i class="fas fa-check"></i></div>
                                             <div>
-                                                <div class="fw-medium text-light">Complete Math Assignment</div>
+                                                <div class="fw-medium">Complete Math Assignment</div>
                                                 <small class="text-muted">Due tomorrow</small>
                                             </div>
                                         </div>
                                         <div class="todo-item">
                                             <div class="todo-check"></div>
                                             <div>
-                                                <div class="fw-medium text-light">Read Chapter 4</div>
+                                                <div class="fw-medium">Read Chapter 4</div>
                                                 <small class="text-muted">Science class</small>
                                             </div>
                                         </div>
                                         <div class="todo-item">
                                             <div class="todo-check"></div>
                                             <div>
-                                                <div class="fw-medium text-light">Prepare for History Quiz</div>
+                                                <div class="fw-medium">Prepare for History Quiz</div>
                                                 <small class="text-muted">Next Monday</small>
                                             </div>
                                         </div>
                                         <div class="todo-item">
                                             <div class="todo-check checked"><i class="fas fa-check"></i></div>
                                             <div>
-                                                <div class="fw-medium text-light">Submit English Essay</div>
+                                                <div class="fw-medium">Submit English Essay</div>
                                                 <small class="text-muted">Completed</small>
                                             </div>
                                         </div>
                                         <div class="todo-item">
                                             <div class="todo-check"></div>
                                             <div>
-                                                <div class="fw-medium text-light">Group Project Meeting</div>
+                                                <div class="fw-medium">Group Project Meeting</div>
                                                 <small class="text-muted">Friday 3 PM</small>
                                             </div>
                                         </div>
@@ -1103,45 +1138,45 @@
                             <!-- Grade Distribution -->
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="mb-0 text-light fw-bold"><i class="fas fa-chart-pie me-2"></i>Grade Distribution</h5>
+                                    <h5 class="mb-0 fw-bold"><i class="fas fa-chart-pie me-2"></i>Grade Distribution</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="grade-distribution">
                                         <div class="d-flex justify-content-between mb-2">
-                                            <span class="text-light">A (90-100%)</span>
-                                            <span class="fw-bold text-light">25%</span>
+                                            <span>A (90-100%)</span>
+                                            <span class="fw-bold">25%</span>
                                         </div>
                                         <div class="grade-bar">
                                             <div class="grade-fill" style="width: 25%">25%</div>
                                         </div>
                                         
                                         <div class="d-flex justify-content-between mb-2">
-                                            <span class="text-light">B (80-89%)</span>
-                                            <span class="fw-bold text-light">40%</span>
+                                            <span>B (80-89%)</span>
+                                            <span class="fw-bold">40%</span>
                                         </div>
                                         <div class="grade-bar">
                                             <div class="grade-fill" style="width: 40%">40%</div>
                                         </div>
                                         
                                         <div class="d-flex justify-content-between mb-2">
-                                            <span class="text-light">C (70-79%)</span>
-                                            <span class="fw-bold text-light">20%</span>
+                                            <span>C (70-79%)</span>
+                                            <span class="fw-bold">20%</span>
                                         </div>
                                         <div class="grade-bar">
                                             <div class="grade-fill" style="width: 20%">20%</div>
                                         </div>
                                         
                                         <div class="d-flex justify-content-between mb-2">
-                                            <span class="text-light">D (60-69%)</span>
-                                            <span class="fw-bold text-light">10%</span>
+                                            <span>D (60-69%)</span>
+                                            <span class="fw-bold">10%</span>
                                         </div>
                                         <div class="grade-bar">
                                             <div class="grade-fill" style="width: 10%">10%</div>
                                         </div>
                                         
                                         <div class="d-flex justify-content-between mb-2">
-                                            <span class="text-light">F (Below 60%)</span>
-                                            <span class="fw-bold text-light">5%</span>
+                                            <span>F (Below 60%)</span>
+                                            <span class="fw-bold">5%</span>
                                         </div>
                                         <div class="grade-bar">
                                             <div class="grade-fill" style="width: 5%">5%</div>
@@ -1155,7 +1190,7 @@
                     <!-- Discussion Forum -->
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0 text-light fw-bold"><i class="fas fa-comments me-2"></i>Recent Discussions</h5>
+                            <h5 class="mb-0 fw-bold"><i class="fas fa-comments me-2"></i>Recent Discussions</h5>
                             <a href="#" class="btn btn-sm btn-outline-primary">New Post <i class="fas fa-plus ms-1"></i></a>
                         </div>
                         <div class="card-body">
@@ -1164,7 +1199,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="author-avatar me-3">MJ</div>
                                         <div>
-                                            <div class="fw-bold text-light">Prof. Johnson</div>
+                                            <div class="fw-bold">Prof. Johnson</div>
                                             <small class="text-muted"><i class="fas fa-clock me-1"></i>2 hours ago</small>
                                         </div>
                                     </div>
@@ -1172,7 +1207,7 @@
                                         <i class="fas fa-star"></i> Pinned
                                     </div>
                                 </div>
-                                <p class="mb-2 text-light">Hello class, I've posted the solutions to last week's problem set. Please review them before our next class. Let me know if you have any questions!</p>
+                                <p class="mb-2">Hello class, I've posted the solutions to last week's problem set. Please review them before our next class. Let me know if you have any questions!</p>
                                 <div class="d-flex gap-3 text-muted">
                                     <span class="post-action"><i class="far fa-thumbs-up me-1"></i>Like (12)</span>
                                     <span class="post-action"><i class="far fa-comment me-1"></i>Reply (5)</span>
@@ -1184,12 +1219,12 @@
                                     <div class="d-flex align-items-center">
                                         <div class="author-avatar me-3">SD</div>
                                         <div>
-                                            <div class="fw-bold text-light">Sarah Davis</div>
+                                            <div class="fw-bold">Sarah Davis</div>
                                             <small class="text-muted"><i class="fas fa-clock me-1"></i>5 hours ago</small>
                                         </div>
                                     </div>
                                 </div>
-                                <p class="mb-2 text-light">Can someone help me with problem #7 from the assignment? I'm having trouble understanding how to apply the quadratic formula in this context.</p>
+                                <p class="mb-2">Can someone help me with problem #7 from the assignment? I'm having trouble understanding how to apply the quadratic formula in this context.</p>
                                 <div class="d-flex gap-3 text-muted">
                                     <span class="post-action"><i class="far fa-thumbs-up me-1"></i>Like (8)</span>
                                     <span class="post-action"><i class="far fa-comment me-1"></i>Reply (3)</span>
@@ -1239,8 +1274,8 @@
                     <h5 class="footer-heading">Newsletter</h5>
                     <p class="text-muted">Subscribe to get updates on new features.</p>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Your email" style="background: var(--light-blue); border: 1px solid var(--brown); color: var(--light);">
-                        <button class="btn" type="button" style="background: var(--brown); color: var(--light);">Subscribe</button>
+                        <input type="email" class="form-control" placeholder="Your email" style="background: var(--light-blue); border: 1px solid var(--brown); color: var(--text-color);">
+                        <button class="btn" type="button" style="background: var(--brown); color: var(--text-color);">Subscribe</button>
                     </div>
                 </div>
             </div>
