@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSphere - Classroom Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-blue: #1e2a47;
+            --brown: #8b7355;
+            --black: #121212;
+            --light-brown: #a9927d;
+            --dark-brown: #5d4a36;
+            --light-blue: #2c3e50;
+            --gray: #7f8c8d;
+            --light: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--black) 0%, var(--dark-blue) 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-blue);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--brown);
+            border-radius: 4px;
+        }
+        
+        /* Navbar Styling */
+        .navbar {
+            background: var(--dark-blue) !important;
+            border-bottom: 2px solid var(--brown);
+            padding: 12px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light) !important;
+        }
+        
+        .navbar-brand span {
+            color: var(--brown);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 8px 16px !important;
+            border-radius: 6px;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+            color: var(--light) !important;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: var(--brown);
+            transform: translateY(-2px);
+        }
+        
+        .navbar-toggler {
+            border: 1px solid var(--brown);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28139, 115, 85, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        /* Main Content */
+        .main-container {
+            padding: 30px 0;
+        }
+        
+        /* Sidebar Styling */
+        .sidebar {
+            background: var(--dark-blue);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--light-blue);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar-header {
+            border-bottom: 1px solid var(--brown);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .class-item {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            background: rgba(30, 42, 71, 0.7);
+        }
+        
+        .class-item:hover {
+            background: rgba(139, 115, 85, 0.2);
+            transform: translateX(8px);
+        }
+        
+        .class-item.active {
+            background: rgba(139, 115, 85, 0.3);
+            border-left: 4px solid var(--brown);
+            transform: translateX(8px);
+        }
+        
+        .class-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: bold;
+            font-size: 1.2rem;
+            background: var(--brown);
+        }
+        
+        .math { background: linear-gradient(135deg, var(--brown), var(--dark-brown)); }
+        .science { background: linear-gradient(135deg, var(--dark-blue), #253d6b); }
+        .english { background: linear-gradient(135deg, var(--light-brown), var(--brown)); }
+        .history { background: linear-gradient(135deg, #5d4a36, #3e2e1f); }
+        
+        /* Card Styling */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            margin-bottom: 25px;
+            overflow: hidden;
+            background: var(--dark-blue);
+            border: 1px solid var(--light-blue);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card-header {
+            background: var(--light-blue);
+            border-bottom: 1px solid var(--brown);
+            padding: 20px 25px;
+            font-weight: 600;
+            color: var(--light);
+        }
+        
+        .stats-card {
+            background: var(--dark-blue);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid var(--light-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .stats-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+        
+        .stats-card.assignments:before { background: var(--brown); }
+        .stats-card.discussions:before { background: var(--light-blue); }
+        .stats-card.grades:before { background: var(--light-brown); }
+        .stats-card.events:before { background: var(--dark-brown); }
+        
+        /* Assignment Styling */
+        .assignment-item {
+            border-bottom: 1px solid var(--light-blue);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 0 10px;
+        }
+        
+        .assignment-item:hover {
+            background: rgba(139, 115, 85, 0.1);
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .assignment-due {
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(139, 115, 85, 0.2);
+            color: var(--light-brown);
+        }
+        
+        /* File Sharing */
+        .file-item {
+            text-align: center;
+            padding: 20px 15px;
+            border-radius: 12px;
+            background: var(--light-blue);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            height: 100%;
+        }
+        
+        .file-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .file-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--brown);
+        }
+        
+        /* Video Meeting */
+        .video-container {
+            background: var(--dark-blue);
+            border-radius: 12px;
+            padding: 25px;
+            color: var(--light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--light-blue);
+        }
+        
+        .video-placeholder {
+            background: rgba(30, 42, 71, 0.7);
+            height: 300px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--brown);
+        }
+        
+        .btn-control {
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-control:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Discussion Forum */
+        .forum-post {
+            background: var(--light-blue);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .forum-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--brown);
+        }
+        
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Progress Bars */
+        .grade-progress {
+            height: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .progress-bar {
+            border-radius: 10px;
+            background: var(--brown);
+        }
+        
+        /* Notification Badge */
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--brown);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: var(--light);
+            margin-top: 60px;
+            padding: 50px 0 25px;
+            border-top: 2px solid var(--brown);
+        }
+        
+        .footer-heading {
+            color: var(--brown);
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-heading:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--brown);
+            border-radius: 3px;
+        }
+        
+        /* Button Styling */
+        .btn-primary {
+            background: var(--brown);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--light);
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark-brown);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(139, 115, 85, 0.4);
+            color: var(--light);
+        }
+        
+        .btn-success {
+            background: var(--light-blue);
+            border: none;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--light);
+        }
+        
+        .btn-success:hover {
+            background: var(--dark-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(44, 62, 80, 0.4);
+            color: var(--light);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--brown);
+            color: var(--brown);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        
+        .btn-outline-primary:hover {
+            background: var(--brown);
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+        
+        /* Event Items */
+        .event-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .event-item:hover {
+            background: rgba(139, 115, 85, 0.1);
+            padding-left: 10px;
+            border-radius: 8px;
+        }
+        
+        .event-date {
+            font-weight: bold;
+            color: var(--brown);
+            background: rgba(139, 115, 85, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        /* Quick Actions */
+        .quick-actions .btn {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .quick-actions .btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Calendar */
+        .calendar {
+            background: var(--dark-blue);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--light-blue);
+            margin-top: 25px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            text-align: center;
+            padding: 10px 5px;
+            border-radius: 8px;
+            font-weight: 500;
+            background: var(--light-blue);
+        }
+        
+        .calendar-day.header {
+            font-weight: 600;
+            color: var(--brown);
+            background: rgba(139, 115, 85, 0.2);
+        }
+        
+        .calendar-day.active {
+            background: var(--brown);
+            color: var(--light);
+        }
+        
+        .calendar-day.event {
+            background: rgba(139, 115, 85, 0.3);
+            color: var(--light-brown);
+            position: relative;
+        }
+        
+        .calendar-day.event:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background: var(--light-brown);
+            border-radius: 50%;
+        }
+        
+        /* To-do List */
+        .todo-list {
+            background: var(--dark-blue);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--light-blue);
+        }
+        
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-blue);
+        }
+        
+        .todo-item:last-child {
+            border-bottom: none;
+        }
+        
+        .todo-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--brown);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .todo-check.checked {
+            background: var(--brown);
+            color: var(--light);
+        }
+        
+        /* Grade Distribution */
+        .grade-distribution {
+            background: var(--dark-blue);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--light-blue);
+        }
+        
+        .grade-bar {
+            height: 30px;
+            margin-bottom: 10px;
+            border-radius: 15px;
+            background: var(--light-blue);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .grade-fill {
+            height: 100%;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: var(--light);
+            font-weight: 600;
+            min-width: 40px;
+            background: var(--brown);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+            
+            .stats-card {
+                margin-bottom: 20px;
+            }
+            
+            .assignment-item .btn {
+                margin-top: 10px;
+                width: 100%;
+            }
+            
+            .navbar-collapse {
+                background: var(--dark-blue);
+                padding: 15px;
+                border-radius: 10px;
+                margin-top: 10px;
+                border: 1px solid var(--brown);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .main-container {
+                padding: 15px 0;
+            }
+            
+            .card-body {
+                padding: 15px;
+            }
+            
+            .stats-card {
+                padding: 20px;
+            }
+            
+            .video-placeholder {
+                height: 200px;
+            }
+        }
+        
+        /* Animation */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>Edu<span>Sphere</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-book me-1"></i> Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-tasks me-1"></i> Assignments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-comments me-1"></i> Discussions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-calendar-alt me-1"></i> Calendar</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <div class="position-relative me-3">
+                                <i class="fas fa-bell fa-lg"></i>
+                                <span class="notification-badge">3</span>
+                            </div>
+                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--brown);">
+                                <span class="fw-bold text-white">JS</span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 mb-4">
+                    <div class="sidebar">
+                        <div class="sidebar-header">
+                            <h5 class="text-light fw-bold"><i class="fas fa-layer-group me-2"></i>My Classes</h5>
+                        </div>
+                        <div class="class-list">
+                            <div class="class-item d-flex align-items-center active">
+                                <div class="class-icon math me-3">M</div>
+                                <div>
+                                    <div class="fw-bold text-light">Mathematics 101</div>
+                                    <small class="text-muted">Prof. Johnson</small>
+                                </div>
+                            </div>
+                            <div class="class-item d-flex align-items-center">
+                                <div class="class-icon science me-3">S</div>
+                                <div>
+                                    <div class="fw-bold text-light">Science & Technology</div>
+                                    <small class="text-muted">Dr. Williams</small>
+                                </div>
+                            </div>
+                            <div class="class-item d-flex align-items-center">
+                                <div class="class-icon english me-3">E</div>
+                                <div>
+                                    <div class="fw-bold text-light">English Literature</div>
+                                    <small class="text-muted">Ms. Davis</small>
+                                </div>
+                            </div>
+                            <div class="class-item d-flex align-items-center">
+                                <div class="class-icon history me-3">H</div>
+                                <div>
+                                    <div class="fw-bold text-light">World History</div>
+                                    <small class="text-muted">Mr. Thompson</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar-header mt-4">
+                            <h5 class="text-light fw-bold"><i class="fas fa-calendar-day me-2"></i>Upcoming Events</h5>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">Oct 15</div>
+                            <div class="event-name fw-medium text-light">Math Quiz - Chapter 5</div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">Oct 18</div>
+                            <div class="event-name fw-medium text-light">Science Project Submission</div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">Oct 22</div>
+                            <div class="event-name fw-medium text-light">History Essay Deadline</div>
+                        </div>
+                        
+                        <div class="sidebar-header mt-4">
+                            <h5 class="text-light fw-bold"><i class="fas fa-bolt me-2"></i>Quick Actions</h5>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="btn btn-primary"><i class="fas fa-plus me-1"></i> New Assignment</button>
+                            <button class="btn btn-outline-primary"><i class="fas fa-video me-1"></i> Start Meeting</button>
+                            <button class="btn btn-outline-primary"><i class="fas fa-upload me-1"></i> Upload File</button>
+                            <button class="btn btn-outline-primary"><i class="fas fa-users me-1"></i> Create Group</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Calendar Widget -->
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <h5 class="mb-0 text-light">October 2023</h5>
+                            <div>
+                                <button class="btn btn-sm btn-outline-primary"><i class="fas fa-chevron-left"></i></button>
+                                <button class="btn btn-sm btn-outline-primary"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day header">Sun</div>
+                            <div class="calendar-day header">Mon</div>
+                            <div class="calendar-day header">Tue</div>
+                            <div class="calendar-day header">Wed</div>
+                            <div class="calendar-day header">Thu</div>
+                            <div class="calendar-day header">Fri</div>
+                            <div class="calendar-day header">Sat</div>
+                            
+                            <!-- Calendar days would be generated dynamically in a real app -->
+                            <div class="calendar-day">1</div>
+                            <div class="calendar-day">2</div>
+                            <div class="calendar-day">3</div>
+                            <div class="calendar-day">4</div>
+                            <div class="calendar-day">5</div>
+                            <div class="calendar-day">6</div>
+                            <div class="calendar-day">7</div>
+                            <div class="calendar-day">8</div>
+                            <div class="calendar-day">9</div>
+                            <div class="calendar-day">10</div>
+                            <div class="calendar-day">11</div>
+                            <div class="calendar-day">12</div>
+                            <div class="calendar-day">13</div>
+                            <div class="calendar-day event">14</div>
+                            <div class="calendar-day active">15</div>
+                            <div class="calendar-day">16</div>
+                            <div class="calendar-day">17</div>
+                            <div class="calendar-day event">18</div>
+                            <div class="calendar-day">19</div>
+                            <div class="calendar-day">20</div>
+                            <div class="calendar-day">21</div>
+                            <div class="calendar-day event">22</div>
+                            <div class="calendar-day">23</div>
+                            <div class="calendar-day">24</div>
+                            <div class="calendar-day">25</div>
+                            <div class="calendar-day">26</div>
+                            <div class="calendar-day">27</div>
+                            <div class="calendar-day">28</div>
+                            <div class="calendar-day">29</div>
+                            <div class="calendar-day">30</div>
+                            <div class="calendar-day">31</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Content -->
+                <div class="col-lg-9">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h2 class="text-light fw-bold">Mathematics 101 - Dashboard</h2>
+                            <p class="text-muted">Welcome back, John! You have 3 pending assignments.</p>
+                        </div>
+                        <button class="btn btn-primary pulse"><i class="fas fa-plus me-1"></i> New Assignment</button>
+                    </div>
+                    
+                    <!-- Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="stats-card assignments animate-fadeIn">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title text-light"><i class="fas fa-tasks me-2"></i>Assignments</h5>
+                                        <h3 class="fw-bold text-light">3</h3>
+                                        <p class="card-text text-muted">Pending</p>
+                                    </div>
+                                    <div class="text-brown display-6">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <small class="text-muted">2 due this week</small>
+                                    <i class="fas fa-arrow-right float-end text-brown mt-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="stats-card discussions animate-fadeIn">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title text-light"><i class="fas fa-comments me-2"></i>Discussions</h5>
+                                        <h3 class="fw-bold text-light">5</h3>
+                                        <p class="card-text text-muted">Active</p>
+                                    </div>
+                                    <div class="text-light-blue display-6">
+                                        <i class="fas fa-comment-dots"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <small class="text-muted">12 new messages</small>
+                                    <i class="fas fa-arrow-right float-end text-light-blue mt-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="stats-card grades animate-fadeIn">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title text-light"><i class="fas fa-chart-line me-2"></i>Grades</h5>
+                                        <h3 class="fw-bold text-light">87%</h3>
+                                        <p class="card-text text-muted">Average</p>
+                                    </div>
+                                    <div class="text-light-brown display-6">
+                                        <i class="fas fa-chart-bar"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <div class="progress grade-progress mb-1">
+                                        <div class="progress-bar" role="progressbar" style="width: 87%"></div>
+                                    </div>
+                                    <small class="text-muted">Current average</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="stats-card events animate-fadeIn">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title text-light"><i class="fas fa-calendar me-2"></i>Upcoming</h5>
+                                        <h3 class="fw-bold text-light">2</h3>
+                                        <p class="card-text text-muted">Events</p>
+                                    </div>
+                                    <div class="text-dark-brown display-6">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <small class="text-muted">Next: Math Quiz</small>
+                                    <i class="fas fa-arrow-right float-end text-dark-brown mt-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Assignments & To-do Section -->
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="card mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0 text-light fw-bold"><i class="fas fa-tasks me-2"></i>Recent Assignments</h5>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">View All <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                                <div class="card-body">
+                                    <div class="assignment-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">
+                                                <h6 class="fw-bold text-light">Algebra Problem Set #5</h6>
+                                                <p class="text-muted mb-0"><i class="fas fa-book me-1"></i>Chapter 3: Quadratic Equations</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <span class="assignment-due"><i class="fas fa-clock me-1"></i>Due: Oct 16</span>
+                                            </div>
+                                            <div class="col-md-3 text-end">
+                                                <button class="btn btn-success btn-sm me-1"><i class="fas fa-upload me-1"></i>Submit</button>
+                                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye me-1"></i>View</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="assignment-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">
+                                                <h6 class="fw-bold text-light">Geometry Proofs</h6>
+                                                <p class="text-muted mb-0"><i class="fas fa-shapes me-1"></i>Triangle congruence theorems</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <span class="assignment-due"><i class="fas fa-clock me-1"></i>Due: Oct 20</span>
+                                            </div>
+                                            <div class="col-md-3 text-end">
+                                                <button class="btn btn-success btn-sm me-1"><i class="fas fa-upload me-1"></i>Submit</button>
+                                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye me-1"></i>View</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="assignment-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6">
+                                                <h6 class="fw-bold text-light">Calculus Limits</h6>
+                                                <p class="text-muted mb-0"><i class="fas fa-infinity me-1"></i>Understanding limits and continuity</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <span class="assignment-due"><i class="fas fa-clock me-1"></i>Due: Oct 25</span>
+                                            </div>
+                                            <div class="col-md-3 text-end">
+                                                <button class="btn btn-success btn-sm me-1"><i class="fas fa-upload me-1"></i>Submit</button>
+                                                <button class="btn btn-primary btn-sm"><i class="fas fa-eye me-1"></i>View</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- File Sharing & Video Meeting Section -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card mb-4 h-100">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h5 class="mb-0 text-light fw-bold"><i class="fas fa-file me-2"></i>Shared Files</h5>
+                                            <a href="#" class="btn btn-sm btn-outline-primary">Upload New</a>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <div class="file-item">
+                                                        <div class="file-icon">
+                                                            <i class="fas fa-file-pdf"></i>
+                                                        </div>
+                                                        <div class="file-name fw-bold text-light">Lecture_Notes.pdf</div>
+                                                        <div class="file-size text-muted">2.4 MB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="file-item">
+                                                        <div class="file-icon">
+                                                            <i class="fas fa-file-word"></i>
+                                                        </div>
+                                                        <div class="file-name fw-bold text-light">Assignment.docx</div>
+                                                        <div class="file-size text-muted">1.1 MB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="file-item">
+                                                        <div class="file-icon">
+                                                            <i class="fas fa-file-image"></i>
+                                                        </div>
+                                                        <div class="file-name fw-bold text-light">Diagram.png</div>
+                                                        <div class="file-size text-muted">850 KB</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <div class="file-item">
+                                                        <div class="file-icon">
+                                                            <i class="fas fa-file-excel"></i>
+                                                        </div>
+                                                        <div class="file-name fw-bold text-light">Grades.xlsx</div>
+                                                        <div class="file-size text-muted">520 KB</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card mb-4 h-100">
+                                        <div class="card-header">
+                                            <h5 class="mb-0 text-light fw-bold"><i class="fas fa-video me-2"></i>Class Meeting</h5>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="video-container h-100">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h5 class="mb-0">Mathematics 101 - Live Session</h5>
+                                                    <div class="text-light">
+                                                        <i class="fas fa-users me-1"></i> 24 participants
+                                                    </div>
+                                                </div>
+                                                <div class="video-placeholder">
+                                                    <div class="text-center">
+                                                        <i class="fas fa-video fa-3x text-brown mb-3"></i>
+                                                        <p class="mb-0">Meeting in progress</p>
+                                                        <small class="text-light">Click join to enter the meeting</small>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-center mt-3 gap-2 flex-wrap">
+                                                    <button class="btn btn-control" style="background: var(--brown);"><i class="fas fa-microphone me-1"></i> Mute</button>
+                                                    <button class="btn btn-control" style="background: var(--brown);"><i class="fas fa-video me-1"></i> Stop Video</button>
+                                                    <button class="btn btn-control" style="background: var(--light-blue);"><i class="fas fa-comments me-1"></i> Chat</button>
+                                                    <button class="btn btn-control" style="background: var(--dark-brown);"><i class="fas fa-phone me-1"></i> Leave</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4">
+                            <!-- To-do List -->
+                            <div class="card mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0 text-light fw-bold"><i class="fas fa-list-check me-2"></i>To-Do List</h5>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Add</a>
+                                </div>
+                                <div class="card-body">
+                                    <div class="todo-list">
+                                        <div class="todo-item">
+                                            <div class="todo-check checked"><i class="fas fa-check"></i></div>
+                                            <div>
+                                                <div class="fw-medium text-light">Complete Math Assignment</div>
+                                                <small class="text-muted">Due tomorrow</small>
+                                            </div>
+                                        </div>
+                                        <div class="todo-item">
+                                            <div class="todo-check"></div>
+                                            <div>
+                                                <div class="fw-medium text-light">Read Chapter 4</div>
+                                                <small class="text-muted">Science class</small>
+                                            </div>
+                                        </div>
+                                        <div class="todo-item">
+                                            <div class="todo-check"></div>
+                                            <div>
+                                                <div class="fw-medium text-light">Prepare for History Quiz</div>
+                                                <small class="text-muted">Next Monday</small>
+                                            </div>
+                                        </div>
+                                        <div class="todo-item">
+                                            <div class="todo-check checked"><i class="fas fa-check"></i></div>
+                                            <div>
+                                                <div class="fw-medium text-light">Submit English Essay</div>
+                                                <small class="text-muted">Completed</small>
+                                            </div>
+                                        </div>
+                                        <div class="todo-item">
+                                            <div class="todo-check"></div>
+                                            <div>
+                                                <div class="fw-medium text-light">Group Project Meeting</div>
+                                                <small class="text-muted">Friday 3 PM</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Grade Distribution -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0 text-light fw-bold"><i class="fas fa-chart-pie me-2"></i>Grade Distribution</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="grade-distribution">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-light">A (90-100%)</span>
+                                            <span class="fw-bold text-light">25%</span>
+                                        </div>
+                                        <div class="grade-bar">
+                                            <div class="grade-fill" style="width: 25%">25%</div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-light">B (80-89%)</span>
+                                            <span class="fw-bold text-light">40%</span>
+                                        </div>
+                                        <div class="grade-bar">
+                                            <div class="grade-fill" style="width: 40%">40%</div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-light">C (70-79%)</span>
+                                            <span class="fw-bold text-light">20%</span>
+                                        </div>
+                                        <div class="grade-bar">
+                                            <div class="grade-fill" style="width: 20%">20%</div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-light">D (60-69%)</span>
+                                            <span class="fw-bold text-light">10%</span>
+                                        </div>
+                                        <div class="grade-bar">
+                                            <div class="grade-fill" style="width: 10%">10%</div>
+                                        </div>
+                                        
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span class="text-light">F (Below 60%)</span>
+                                            <span class="fw-bold text-light">5%</span>
+                                        </div>
+                                        <div class="grade-bar">
+                                            <div class="grade-fill" style="width: 5%">5%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Discussion Forum -->
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0 text-light fw-bold"><i class="fas fa-comments me-2"></i>Recent Discussions</h5>
+                            <a href="#" class="btn btn-sm btn-outline-primary">New Post <i class="fas fa-plus ms-1"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="forum-post">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="author-avatar me-3">MJ</div>
+                                        <div>
+                                            <div class="fw-bold text-light">Prof. Johnson</div>
+                                            <small class="text-muted"><i class="fas fa-clock me-1"></i>2 hours ago</small>
+                                        </div>
+                                    </div>
+                                    <div class="text-brown">
+                                        <i class="fas fa-star"></i> Pinned
+                                    </div>
+                                </div>
+                                <p class="mb-2 text-light">Hello class, I've posted the solutions to last week's problem set. Please review them before our next class. Let me know if you have any questions!</p>
+                                <div class="d-flex gap-3 text-muted">
+                                    <span class="post-action"><i class="far fa-thumbs-up me-1"></i>Like (12)</span>
+                                    <span class="post-action"><i class="far fa-comment me-1"></i>Reply (5)</span>
+                                    <span class="post-action"><i class="far fa-share-square me-1"></i>Share</span>
+                                </div>
+                            </div>
+                            <div class="forum-post">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="author-avatar me-3">SD</div>
+                                        <div>
+                                            <div class="fw-bold text-light">Sarah Davis</div>
+                                            <small class="text-muted"><i class="fas fa-clock me-1"></i>5 hours ago</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-2 text-light">Can someone help me with problem #7 from the assignment? I'm having trouble understanding how to apply the quadratic formula in this context.</p>
+                                <div class="d-flex gap-3 text-muted">
+                                    <span class="post-action"><i class="far fa-thumbs-up me-1"></i>Like (8)</span>
+                                    <span class="post-action"><i class="far fa-comment me-1"></i>Reply (3)</span>
+                                    <span class="post-action"><i class="far fa-share-square me-1"></i>Share</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-heading">EduSphere</h5>
+                    <p class="text-muted">An interactive classroom management system designed to enhance the learning experience for students and teachers.</p>
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="#" class="text-muted"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Classes</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Assignments</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Grades</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-heading">Support</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Help Center</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Contact Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="footer-heading">Newsletter</h5>
+                    <p class="text-muted">Subscribe to get updates on new features.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email" style="background: var(--light-blue); border: 1px solid var(--brown); color: var(--light);">
+                        <button class="btn" type="button" style="background: var(--brown); color: var(--light);">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: var(--brown);">
+            <div class="text-center text-muted">
+                &copy; 2023 EduSphere. All rights reserved. | Designed with <i class="fas fa-heart text-brown"></i> for Education
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Class selection
+            const classItems = document.querySelectorAll('.class-item');
+            classItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    classItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update main content header with selected class
+                    const className = this.querySelector('.fw-bold').textContent;
+                    document.querySelector('h2').textContent = `${className} - Dashboard`;
+                });
+            });
+            
+            // Assignment submission
+            const submitButtons = document.querySelectorAll('.btn-success');
+            submitButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const assignmentName = this.closest('.assignment-item').querySelector('h6').textContent;
+                    alert(`Submit your work for: ${assignmentName}`);
+                });
+            });
+            
+            // Video meeting controls
+            const muteBtn = document.querySelectorAll('.btn-control')[0];
+            const videoBtn = document.querySelectorAll('.btn-control')[1];
+            
+            muteBtn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-microphone')) {
+                    icon.classList.remove('fa-microphone');
+                    icon.classList.add('fa-microphone-slash');
+                    this.innerHTML = '<i class="fas fa-microphone-slash me-1"></i> Unmute';
+                } else {
+                    icon.classList.remove('fa-microphone-slash');
+                    icon.classList.add('fa-microphone');
+                    this.innerHTML = '<i class="fas fa-microphone me-1"></i> Mute';
+                }
+            });
+            
+            videoBtn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-video')) {
+                    icon.classList.remove('fa-video');
+                    icon.classList.add('fa-video-slash');
+                    this.innerHTML = '<i class="fas fa-video-slash me-1"></i> Start Video';
+                } else {
+                    icon.classList.remove('fa-video-slash');
+                    icon.classList.add('fa-video');
+                    this.innerHTML = '<i class="fas fa-video me-1"></i> Stop Video';
+                }
+            });
+            
+            // Discussion forum interactions
+            const likeButtons = document.querySelectorAll('.post-action .fa-thumbs-up');
+            likeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('far')) {
+                        this.classList.remove('far');
+                        this.classList.add('fas');
+                        this.style.color = 'var(--brown)';
+                    } else {
+                        this.classList.remove('fas');
+                        this.classList.add('far');
+                        this.style.color = '';
+                    }
+                });
+            });
+            
+            // To-do list interactions
+            const todoChecks = document.querySelectorAll('.todo-check');
+            todoChecks.forEach(check => {
+                check.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    if (this.classList.contains('checked')) {
+                        this.innerHTML = '<i class="fas fa-check"></i>';
+                    } else {
+                        this.innerHTML = '';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
